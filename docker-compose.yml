@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  # platform-user-api:
+  #   image: platform-user-service
+  #   container_name: platform-user-api
+  #   ports:
+  #     - "8080:80"
+  #   environment:
+  #     - ConnectionStrings__DefaultConnection=User ID=postgres;Password=postgres;Server=platform-user-db;Port=5432;Database=postgres;Integrated Security=true;Pooling=true;
+  #     - ASPNETCORE_URLS=http://+:80
+  #   depends_on:
+  #     - platform-user-db
+
+  platform-user-db:
+    image: postgres:latest
+    container_name: platform-user-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - app_data:/var/lib/postgresql/data
+
+volumes:
+  app_data:
